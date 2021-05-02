@@ -6,5 +6,7 @@ export const CounterReducer = (state = 25, action: IAction) => {
       return state + 1;
     case 'DECREMENT__COUNTER':
       return state - 1;
+    default:
+      return state
   }
 }

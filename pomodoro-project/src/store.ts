@@ -1,15 +1,12 @@
-import { combineReducers, createStore } from 'redux'
-import { devToolsEnhancer } from 'redux-devtools-extension'
+import { configureStore } from '@reduxjs/toolkit'
 import { CounterReducer } from './features/reducers'
 
-/* Create root reducer, containing all features of the application */
-const rootReducer = combineReducers({
-  count: CounterReducer,
+const store = configureStore({
+  reducer: {
+    counter: CounterReducer,
+  }
 })
 
-const store = createStore(
-  rootReducer,
-  /* preloadedState, */ devToolsEnhancer({})
-)
-
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
 export default store

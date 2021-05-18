@@ -4,7 +4,7 @@ import { CounterReducer } from './features/reducers'
 const store = configureStore({
   reducer: {
     counter: CounterReducer,
-  }
+  },
 })
 
 export type RootState = ReturnType<typeof store.getState>

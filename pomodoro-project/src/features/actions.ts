@@ -1,11 +1,11 @@
-export const increment = () => {
+export const incrementSession = () => {
   return {
-    type: 'INCREMENT__COUNTER'
+    type: 'INCREMENT__COUNTER',
   }
 }
 
-export const decriment = () => {
+export const decrementSession = () => {
   return {
-    type: 'DECREMENT__COUNTER'
+    type: 'DECREMENT__COUNTER',
   }
 }

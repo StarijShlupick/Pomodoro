@@ -1,7 +1,11 @@
 .timer{
+	height: 100%;
+	margin: auto 0;
+}
+.timer__wrapper{
 	width: 250px;
 	height: 250px;
-	margin: 50px auto;
+	margin: 0 auto;
 }
 .timer__buttons{
 	margin: 0 auto;

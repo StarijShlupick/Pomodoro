@@ -5,6 +5,7 @@
 html{
   box-sizing: border-box;
   font-size: 20px;
+  min-height: 100vh;
 }
 *, *::after, *::before{
   box-sizing: inherit;
@@ -17,6 +18,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 
 code {

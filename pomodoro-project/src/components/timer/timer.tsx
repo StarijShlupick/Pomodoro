@@ -1,24 +1,52 @@
 import React, { FunctionComponent, useRef, useState } from 'react'
-// import { useDispatch } from 'react-redux'
-// import { incrementSession } from '../../features/actions'
 import './timer.css'
-import { ETimerStatus } from '../../models/interface'
+import {
+  ECounterStatus,
+  ETimerStatus,
+  TTimerProps,
+} from '../../models/interface'
 
-type TTimerProps = {
-  count: number
-}
-
-export const Timer: FunctionComponent<TTimerProps> = (count) => {
-  const { count: startTime } = count
+export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
+  const { count: startTime } = props
+  const { relax: relaxTime } = props
   const [time, setTime] = useState({
     m: startTime,
     s: 0,
   })
   const [timerStatus, setTimerStatus] = useState(ETimerStatus.inactive)
+  const [counterStatus, setCounterStatus] = useState(ECounterStatus.session)
   const timerIntervalRef = useRef<number | null>(null)
   let updatedM = time.m
   let updatedS = time.s
+  const reset = (): void => {
+    window.clearInterval(timerIntervalRef.current || 0)
+    setTimerStatus(ETimerStatus.inactive)
+    setCounterStatus(ECounterStatus.session)
+    setTime({
+      m: startTime,
+      s: 0,
+    })
+  }
+  function switchMode(): void {
+    if (counterStatus === ECounterStatus.session) {
+      window.clearInterval(timerIntervalRef.current || 0)
+      setTimerStatus(ETimerStatus.inactive)
+      setCounterStatus(ECounterStatus.relax)
+      setTime({
+        m: relaxTime,
+        s: 0,
+      })
+      updatedM = relaxTime
+    }
+    if (counterStatus === ECounterStatus.relax) {
+      reset()
+      updatedM = startTime
+    }
+  }
   const run = () => {
+    if (updatedM === 0 && updatedS === 1) {
+      switchMode()
+    }
     if (updatedS === 0) {
       updatedM -= 1
       updatedS = 60
@@ -29,30 +57,21 @@ export const Timer: FunctionComponent<TTimerProps> = (count) => {
       s: updatedS,
     })
   }
-  const start = () => {
+  const start = (): void => {
     run()
     setTimerStatus(ETimerStatus.active)
-    timerIntervalRef.current = window.setInterval(run, 1000)
+    timerIntervalRef.current = window.setInterval(run, 100)
   }
-  const stop = () => {
+  const stop = (): void => {
     window.clearInterval(timerIntervalRef.current || 0)
     setTimerStatus(ETimerStatus.pause)
   }
-  const reset = () => {
-    window.clearInterval(timerIntervalRef.current || 0)
-    setTimerStatus(ETimerStatus.inactive)
-    setTime({
-      m: startTime,
-      s: 0,
-    })
-  }
-  const resume = () => {
+  const resume = (): void => {
     start()
   }
-  // const dispatch = useDispatch()
   return (
-    <>
-      <div className="timer flex justify-center items-center rounded-full shadow-lg">
+    <section className="timer">
+      <div className="timer__wrapper flex justify-center items-center rounded-full shadow-lg">
         <div className="timer__screen">
           <span>{time.m >= 10 ? time.m : `0${time.m}`}</span>
           <span>:</span>
@@ -92,6 +111,6 @@ export const Timer: FunctionComponent<TTimerProps> = (count) => {
           ''
         )}
       </div>
-    </>
+    </section>
   )
 }

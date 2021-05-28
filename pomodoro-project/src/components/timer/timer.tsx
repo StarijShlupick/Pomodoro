@@ -1,10 +1,15 @@
 import React, { FunctionComponent, useRef, useState } from 'react'
 import './timer.css'
+import useSound from 'use-sound'
 import {
   ECounterStatus,
   ETimerStatus,
   TTimerProps,
 } from '../../models/interface'
+
+import sessionSound from '../../sounds/session.mp3'
+// @ts-ignore
+import relaxSound from '../../sounds/relax.mp3'
 
 export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
   const { count: startTime } = props
@@ -18,6 +23,8 @@ export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
   const timerIntervalRef = useRef<number | null>(null)
   let updatedM = time.m
   let updatedS = time.s
+  const [sessionPlay] = useSound(sessionSound)
+  const [relaxPlay] = useSound(relaxSound)
   const reset = (): void => {
     window.clearInterval(timerIntervalRef.current || 0)
     setTimerStatus(ETimerStatus.inactive)
@@ -37,10 +44,12 @@ export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
         s: 0,
       })
       updatedM = relaxTime
+      sessionPlay()
     }
     if (counterStatus === ECounterStatus.relax) {
       reset()
       updatedM = startTime
+      relaxPlay()
     }
   }
   const run = () => {

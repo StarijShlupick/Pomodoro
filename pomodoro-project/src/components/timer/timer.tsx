@@ -6,9 +6,7 @@ import {
   ETimerStatus,
   TTimerProps,
 } from '../../models/interface'
-
 import sessionSound from '../../sounds/session.mp3'
-// @ts-ignore
 import relaxSound from '../../sounds/relax.mp3'
 
 export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {

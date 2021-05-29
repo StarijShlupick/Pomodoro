@@ -18,6 +18,7 @@ export enum EButtonsSoundStatus {
 export type TTimerProps = {
   count: number
   relax: number
+  timerStatus: ETimerStatus
   sound: EButtonsSoundStatus
 }
 export type TSessionProps = {

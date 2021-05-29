@@ -1,12 +1,38 @@
 .timer{
-	height: 100%;
-	margin: auto 0;
+	padding: 0;
+	overflow-y: auto;
 }
 .timer__wrapper{
 	width: 250px;
+	min-width: 250px;
 	height: 250px;
-	margin: 0 auto;
+	min-height: 250px;
+	margin: 150px auto 0;
 }
 .timer__buttons{
-	margin: 0 auto;
+	width: 200px;
+	height: 50px;
+	margin: 50px auto 0;
+	cursor: pointer;
+}
+button{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.start-button, .resume-button{
+	height: 100%;
+	background-color: yellowgreen;
+}
+img{
+	width: 40px;
+	height: 40px;
+}
+.stop-button{
+	height: 100%;
+	background-color: cadetblue;
+}
+.reset-button{
+	height: 100%;
+	background-color: lightcoral;
 }

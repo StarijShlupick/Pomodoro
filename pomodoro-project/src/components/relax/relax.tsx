@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { useDispatch } from 'react-redux'
 import useSound from 'use-sound'
 import { decrementRelax, incrementRelax } from '../../features/actions'
-import {EButtonsSoundStatus, TRelaxProps} from '../../models/interface'
+import { EButtonsSoundStatus, TRelaxProps } from '../../models/interface'
 import increaseSound from '../../sounds/increase.mp3'
 import decreaseSound from '../../sounds/decrease.mp3'
 

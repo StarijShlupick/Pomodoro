@@ -1,4 +1,4 @@
-import { EButtonsSoundStatus, IAction } from '../models/interface'
+import {EButtonsSoundStatus, ETimerStatus, IAction} from '../models/interface'
 
 export const CounterReducer = (state = 25, action: IAction) => {
   switch (action.type) {
@@ -31,6 +31,22 @@ export const ButtonsSoundReducer = (
       return EButtonsSoundStatus.enable
     case 'DISABLE__BUTTONS-SOUND':
       return EButtonsSoundStatus.disable
+    default:
+      return state
+  }
+}
+
+export const TimerStatusReducer = (
+  state = ETimerStatus.inactive,
+  action: IAction
+) => {
+  switch (action.type) {
+    case 'INACTIVE__TIMER-STATUS':
+      return ETimerStatus.inactive
+    case 'ACTIVE__TIMER-STATUS':
+      return ETimerStatus.active
+    case 'PAUSE__TIMER-STATUS':
+      return ETimerStatus.pause
     default:
       return state
   }

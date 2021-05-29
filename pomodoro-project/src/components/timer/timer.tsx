@@ -1,21 +1,36 @@
-import React, {FunctionComponent, useRef, useState} from 'react'
+import React, { FunctionComponent, useRef, useState } from 'react'
 import './timer.css'
 import useSound from 'use-sound'
-import {EButtonsSoundStatus, ECounterStatus, ETimerStatus, TTimerProps,} from '../../models/interface'
+import { useDispatch } from 'react-redux'
+import {
+  EButtonsSoundStatus,
+  ECounterStatus,
+  ETimerStatus,
+  TTimerProps,
+} from '../../models/interface'
 import sessionSound from '../../sounds/session.mp3'
 import relaxSound from '../../sounds/relax.mp3'
 import startSound from '../../sounds/start-button.mp3'
+import playIcon from '../../icons/play_arrow_white_24dp.svg'
+import stopIcon from '../../icons/stop_white_24dp.svg'
+import resetIcon from '../../icons/restart_alt_white_24dp.svg'
+import {
+  activeTimerStatus,
+  inactiveTimerStatus,
+  pauseTimerStatus,
+} from '../../features/actions'
 
 export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
   const { count: startTime } = props
   const { relax: relaxTime } = props
   const { sound: buttonSound } = props
+  const { timerStatus } = props
   const [time, setTime] = useState({
     m: startTime,
     s: 0,
   })
-  const [timerStatus, setTimerStatus] = useState(ETimerStatus.inactive)
   const [counterStatus, setCounterStatus] = useState(ECounterStatus.session)
+  const dispatch = useDispatch()
   const timerIntervalRef = useRef<number | null>(null)
   let updatedM = time.m
   let updatedS = time.s
@@ -24,7 +39,7 @@ export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
   const [startPlay] = useSound(startSound)
   const reset = (): void => {
     window.clearInterval(timerIntervalRef.current || 0)
-    setTimerStatus(ETimerStatus.inactive)
+    dispatch(inactiveTimerStatus())
     setCounterStatus(ECounterStatus.session)
     setTime({
       m: startTime,
@@ -34,7 +49,7 @@ export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
   function switchMode(): void {
     if (counterStatus === ECounterStatus.session) {
       window.clearInterval(timerIntervalRef.current || 0)
-      setTimerStatus(ETimerStatus.inactive)
+      dispatch(inactiveTimerStatus())
       setCounterStatus(ECounterStatus.relax)
       setTime({
         m: relaxTime,
@@ -65,15 +80,15 @@ export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
   }
   const start = (): void => {
     run()
-    setTimerStatus(ETimerStatus.active)
-    timerIntervalRef.current = window.setInterval(run, 100)
+    dispatch(activeTimerStatus())
+    timerIntervalRef.current = window.setInterval(run, 1000)
     if (buttonSound === EButtonsSoundStatus.enable) {
       startPlay()
     }
   }
   const stop = (): void => {
     window.clearInterval(timerIntervalRef.current || 0)
-    setTimerStatus(ETimerStatus.pause)
+    dispatch(pauseTimerStatus())
   }
   const resume = (): void => {
     start()
@@ -87,21 +102,33 @@ export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
           <span>{time.s >= 10 ? time.s : `0${time.s}`}</span>
         </div>
       </div>
-      <div className="timer__buttons flex justify-center items-center rounded-full">
+      <div className="timer__buttons flex justify-center items-center overflow-hidden rounded-full shadow-lg">
         {timerStatus === ETimerStatus.inactive ? (
-          <button type="button" onClick={start}>
-            start
+          <button
+            className="start-button w-full focus:outline-none"
+            type="button"
+            onClick={start}
+          >
+            <img src={playIcon} alt="play" />
           </button>
         ) : (
           ''
         )}
         {timerStatus === ETimerStatus.active ? (
           <>
-            <button type="button" onClick={stop}>
-              stop
+            <button
+              className="stop-button w-2/4 focus:outline-none"
+              type="button"
+              onClick={stop}
+            >
+              <img src={stopIcon} alt="play" />
             </button>
-            <button type="button" onClick={reset}>
-              reset
+            <button
+              className="reset-button w-2/4 focus:outline-none"
+              type="button"
+              onClick={reset}
+            >
+              <img src={resetIcon} alt="play" />
             </button>
           </>
         ) : (
@@ -109,11 +136,19 @@ export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
         )}
         {timerStatus === ETimerStatus.pause ? (
           <>
-            <button type="button" onClick={resume}>
-              resume
+            <button
+              className="resume-button w-2/4 focus:outline-none"
+              type="button"
+              onClick={resume}
+            >
+              <img src={playIcon} alt="play" />
             </button>
-            <button type="button" onClick={reset}>
-              reset
+            <button
+              className="reset-button w-2/4 focus:outline-none"
+              type="button"
+              onClick={reset}
+            >
+              <img src={resetIcon} alt="play" />
             </button>
           </>
         ) : (

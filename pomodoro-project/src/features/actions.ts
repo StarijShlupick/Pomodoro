@@ -33,3 +33,21 @@ export const disableButtonsSound = () => {
     type: 'DISABLE__BUTTONS-SOUND',
   }
 }
+
+export const inactiveTimerStatus = () => {
+  return {
+    type: 'INACTIVE__TIMER-STATUS',
+  }
+}
+
+export const activeTimerStatus = () => {
+  return {
+    type: 'ACTIVE__TIMER-STATUS',
+  }
+}
+
+export const pauseTimerStatus = () => {
+  return {
+    type: 'PAUSE__TIMER-STATUS',
+  }
+}

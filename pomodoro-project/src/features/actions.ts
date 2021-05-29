@@ -21,3 +21,15 @@ export const decrementRelax = () => {
     type: 'DECREMENT__RELAX-COUNTER',
   }
 }
+
+export const enableButtonsSound = () => {
+  return {
+    type: 'ENABLE__BUTTONS-SOUND',
+  }
+}
+
+export const disableButtonsSound = () => {
+  return {
+    type: 'DISABLE__BUTTONS-SOUND',
+  }
+}

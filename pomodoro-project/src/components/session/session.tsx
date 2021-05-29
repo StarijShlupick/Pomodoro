@@ -1,11 +1,19 @@
 import React, { FunctionComponent } from 'react'
 import { useDispatch } from 'react-redux'
+import useSound from 'use-sound'
 import { decrementSession, incrementSession } from '../../features/actions'
-import { TSessionProps } from '../../models/interface'
+import { EButtonsSoundStatus, TSessionProps } from '../../models/interface'
+import increaseSound from '../../sounds/increase.mp3'
+import decreaseSound from '../../sounds/decrease.mp3'
 
-export const Session: FunctionComponent<TSessionProps> = (count) => {
-  const { count: sessionTime } = count
+export const Session: FunctionComponent<TSessionProps> = (
+  props: TSessionProps
+) => {
+  const { count: sessionTime } = props
+  const { sound: buttonSound } = props
   const dispatch = useDispatch()
+  const [increase] = useSound(increaseSound)
+  const [decrease] = useSound(decreaseSound)
   return (
     <section className="session">
       <h3 className="session__header">Session length</h3>
@@ -18,6 +26,9 @@ export const Session: FunctionComponent<TSessionProps> = (count) => {
           type="button"
           onClick={() => {
             dispatch(incrementSession())
+            if (buttonSound === EButtonsSoundStatus.enable) {
+              increase()
+            }
           }}
         >
           increment
@@ -26,6 +37,9 @@ export const Session: FunctionComponent<TSessionProps> = (count) => {
           type="button"
           onClick={() => {
             dispatch(decrementSession())
+            if (buttonSound === EButtonsSoundStatus.enable) {
+              decrease()
+            }
           }}
         >
           decrement

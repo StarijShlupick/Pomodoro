@@ -1,17 +1,15 @@
-import React, { FunctionComponent, useRef, useState } from 'react'
+import React, {FunctionComponent, useRef, useState} from 'react'
 import './timer.css'
 import useSound from 'use-sound'
-import {
-  ECounterStatus,
-  ETimerStatus,
-  TTimerProps,
-} from '../../models/interface'
+import {EButtonsSoundStatus, ECounterStatus, ETimerStatus, TTimerProps,} from '../../models/interface'
 import sessionSound from '../../sounds/session.mp3'
 import relaxSound from '../../sounds/relax.mp3'
+import startSound from '../../sounds/start-button.mp3'
 
 export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
   const { count: startTime } = props
   const { relax: relaxTime } = props
+  const { sound: buttonSound } = props
   const [time, setTime] = useState({
     m: startTime,
     s: 0,
@@ -23,6 +21,7 @@ export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
   let updatedS = time.s
   const [sessionPlay] = useSound(sessionSound)
   const [relaxPlay] = useSound(relaxSound)
+  const [startPlay] = useSound(startSound)
   const reset = (): void => {
     window.clearInterval(timerIntervalRef.current || 0)
     setTimerStatus(ETimerStatus.inactive)
@@ -68,6 +67,9 @@ export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
     run()
     setTimerStatus(ETimerStatus.active)
     timerIntervalRef.current = window.setInterval(run, 100)
+    if (buttonSound === EButtonsSoundStatus.enable) {
+      startPlay()
+    }
   }
   const stop = (): void => {
     window.clearInterval(timerIntervalRef.current || 0)

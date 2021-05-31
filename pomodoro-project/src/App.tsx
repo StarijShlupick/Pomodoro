@@ -57,7 +57,6 @@ const App: React.FC = () => {
         </Route>
         <Route path="/settings">
           <section className="settings">
-            <h1>Settings</h1>
             <Session count={count} sound={sound} />
             <Relax relax={relax} sound={sound} />
             <ButtonsSound sound={sound} />

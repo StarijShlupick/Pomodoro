@@ -2,16 +2,21 @@
 	padding: 0;
 	overflow-y: auto;
 }
+.timer__screen{
+	font-size: 2.5rem;
+	font-weight: bold;
+}
 .timer__wrapper{
 	width: 250px;
 	min-width: 250px;
 	height: 250px;
 	min-height: 250px;
+	background-color: ghostwhite;
 	margin: 150px auto 0;
 }
 .timer__buttons{
 	width: 200px;
-	height: 50px;
+	min-height: 50px;
 	margin: 50px auto 0;
 	cursor: pointer;
 }
@@ -20,14 +25,15 @@ button{
 	justify-content: center;
 	align-items: center;
 }
-.start-button, .resume-button{
-	height: 100%;
-	background-color: yellowgreen;
-}
 img{
 	width: 40px;
 	height: 40px;
 }
+.start-button, .resume-button{
+	height: 100%;
+	background-color: yellowgreen;
+}
+
 .stop-button{
 	height: 100%;
 	background-color: cadetblue;

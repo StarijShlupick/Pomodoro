@@ -39,3 +39,15 @@ code {
   display: flex;
   justify-content: space-between;
 }
+
+@keyframes session {
+  0% {
+    background-color: yellowgreen;
+  }
+  50% {
+    background-color: lightgreen;
+  }
+  100% {
+    background-color: yellowgreen;
+  }
+}

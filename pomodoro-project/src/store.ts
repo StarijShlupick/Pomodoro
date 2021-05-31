@@ -2,7 +2,8 @@ import { configureStore } from '@reduxjs/toolkit'
 import {
   ButtonsSoundReducer,
   CounterReducer,
-  CounterRelaxReducer, TimerStatusReducer,
+  CounterRelaxReducer,
+  TimerStatusReducer,
 } from './features/reducers'
 
 const store = configureStore({

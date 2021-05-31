@@ -1,11 +1,11 @@
-import {EButtonsSoundStatus, ETimerStatus, IAction} from '../models/interface'
+import { EButtonsSoundStatus, ETimerStatus, IAction } from '../models/interface'
 
 export const CounterReducer = (state = 25, action: IAction) => {
   switch (action.type) {
     case 'INCREMENT__COUNTER':
-      return state + 1
+      return state + 5
     case 'DECREMENT__COUNTER':
-      return state - 1
+      return state - 5
     default:
       return state
   }

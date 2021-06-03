@@ -2,6 +2,12 @@
 	padding: 0;
 	overflow-y: auto;
 }
+.timer__header{
+	font-size: 1.5rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-top: 150px;
+}
 .timer__screen{
 	font-size: 2.5rem;
 	font-weight: bold;
@@ -12,12 +18,12 @@
 	height: 250px;
 	min-height: 250px;
 	background-color: ghostwhite;
-	margin: 150px auto 0;
+	margin: 20px auto 0;
 }
 .timer__buttons{
 	width: 200px;
 	min-height: 50px;
-	margin: 50px auto 0;
+	margin: 30px auto 0;
 	cursor: pointer;
 }
 button{

@@ -6,6 +6,7 @@ import { EButtonsSoundStatus, TRelaxProps } from '../../models/interface'
 import './relax.css'
 import increaseSound from '../../sounds/increase.mp3'
 import decreaseSound from '../../sounds/decrease.mp3'
+import errorSound from '../../sounds/error_text_message.mp3'
 import incrementIcon from '../../icons/arrow_upward_white_24dp.svg'
 import decrementIcon from '../../icons/arrow_downward_white_24dp.svg'
 
@@ -15,6 +16,7 @@ export const Relax: FunctionComponent<TRelaxProps> = (props: TRelaxProps) => {
   const dispatch = useDispatch()
   const [increase] = useSound(increaseSound)
   const [decrease] = useSound(decreaseSound)
+  const [error] = useSound(errorSound)
   return (
     <section className="relax">
       <h3 className="relax__header">Relax length</h3>
@@ -35,6 +37,12 @@ export const Relax: FunctionComponent<TRelaxProps> = (props: TRelaxProps) => {
                 increase()
               }
             }
+            if (
+              buttonSound === EButtonsSoundStatus.enable &&
+              relaxTime === 30
+            ) {
+              error()
+            }
             return null
           }}
         >
@@ -49,6 +57,9 @@ export const Relax: FunctionComponent<TRelaxProps> = (props: TRelaxProps) => {
               if (buttonSound === EButtonsSoundStatus.enable) {
                 decrease()
               }
+            }
+            if (buttonSound === EButtonsSoundStatus.enable && relaxTime === 1) {
+              error()
             }
             return null
           }}

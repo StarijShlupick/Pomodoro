@@ -25,6 +25,7 @@ export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
   const { relax: relaxTime } = props
   const { sound: buttonSound } = props
   const { timerStatus } = props
+  const { testMode } = props
   const [time, setTime] = useState({
     m: startTime,
     s: 0,
@@ -81,7 +82,7 @@ export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
   const start = (): void => {
     run()
     dispatch(activeTimerStatus())
-    timerIntervalRef.current = window.setInterval(run, 1000)
+    timerIntervalRef.current = window.setInterval(run, testMode)
     if (buttonSound === EButtonsSoundStatus.enable) {
       startPlay()
     }
@@ -95,6 +96,7 @@ export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
   }
   return (
     <section className="timer">
+      <h1 className="timer__header">{counterStatus}</h1>
       <div className="timer__wrapper flex justify-center items-center rounded-full shadow-lg">
         <div className="timer__screen">
           <span>{time.m >= 10 ? time.m : `0${time.m}`}</span>

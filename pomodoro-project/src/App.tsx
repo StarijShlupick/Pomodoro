@@ -11,7 +11,8 @@ import { Timer } from './components/timer/timer'
 import { Session } from './components/session/session'
 import { Relax } from './components/relax/relax'
 import { RootState } from './store'
-import { ButtonsSound } from './components/ButtonsSound/buttons-sound'
+import { ButtonsSound } from './components/buttons-sound/buttons-sound'
+import { TestMode } from './components/test-mode/test-mode'
 import { ETimerStatus } from './models/interface'
 
 const App: React.FC = () => {
@@ -19,6 +20,7 @@ const App: React.FC = () => {
   const relax = useSelector((state: RootState) => state.relax)
   const sound = useSelector((state: RootState) => state.buttonsSound)
   const timerStatus = useSelector((state: RootState) => state.timerStatus)
+  const testMode = useSelector((state: RootState) => state.testMode)
   return (
     <Router>
       <header
@@ -52,11 +54,13 @@ const App: React.FC = () => {
               relax={relax}
               timerStatus={timerStatus}
               sound={sound}
+              testMode={testMode}
             />
           </section>
         </Route>
         <Route path="/settings">
           <section className="settings">
+            <TestMode testMode={testMode} />
             <Session count={count} sound={sound} />
             <Relax relax={relax} sound={sound} />
             <ButtonsSound sound={sound} />

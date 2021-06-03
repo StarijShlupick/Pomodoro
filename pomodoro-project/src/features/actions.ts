@@ -34,6 +34,18 @@ export const disableButtonsSound = () => {
   }
 }
 
+export const enableTestMode = () => {
+  return {
+    type: 'ENABLE__TEST-MODE',
+  }
+}
+
+export const disableTestMode = () => {
+  return {
+    type: 'DISABLE__TEST-MODE',
+  }
+}
+
 export const inactiveTimerStatus = () => {
   return {
     type: 'INACTIVE__TIMER-STATUS',

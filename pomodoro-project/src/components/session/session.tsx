@@ -6,6 +6,7 @@ import { EButtonsSoundStatus, TSessionProps } from '../../models/interface'
 import './session.css'
 import increaseSound from '../../sounds/increase.mp3'
 import decreaseSound from '../../sounds/decrease.mp3'
+import errorSound from '../../sounds/error_text_message.mp3'
 import incrementIcon from '../../icons/arrow_upward_white_24dp.svg'
 import decrementIcon from '../../icons/arrow_downward_white_24dp.svg'
 
@@ -17,6 +18,7 @@ export const Session: FunctionComponent<TSessionProps> = (
   const dispatch = useDispatch()
   const [increase] = useSound(increaseSound)
   const [decrease] = useSound(decreaseSound)
+  const [error] = useSound(errorSound)
   return (
     <section className="session">
       <h3 className="session__header">Session length</h3>
@@ -37,6 +39,12 @@ export const Session: FunctionComponent<TSessionProps> = (
                 increase()
               }
             }
+            if (
+              buttonSound === EButtonsSoundStatus.enable &&
+              sessionTime === 120
+            ) {
+              error()
+            }
             return null
           }}
         >
@@ -51,6 +59,12 @@ export const Session: FunctionComponent<TSessionProps> = (
               if (buttonSound === EButtonsSoundStatus.enable) {
                 decrease()
               }
+            }
+            if (
+              buttonSound === EButtonsSoundStatus.enable &&
+              sessionTime === 5
+            ) {
+              error()
             }
             return null
           }}

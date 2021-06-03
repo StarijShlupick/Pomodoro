@@ -8,18 +8,23 @@ export enum ETimerStatus {
   pause,
 }
 export enum ECounterStatus {
-  session,
-  relax,
+  session = 'Session mode',
+  relax = 'Relax mode',
 }
 export enum EButtonsSoundStatus {
   enable,
   disable,
+}
+export enum ETestMode {
+  enable = 10,
+  disable = 1000,
 }
 export type TTimerProps = {
   count: number
   relax: number
   timerStatus: ETimerStatus
   sound: EButtonsSoundStatus
+  testMode: ETestMode
 }
 export type TSessionProps = {
   count: number
@@ -32,4 +37,8 @@ export type TRelaxProps = {
 
 export type TButtonsSoundProps = {
   sound: EButtonsSoundStatus
+}
+
+export type TTestModeProps = {
+  testMode: ETestMode
 }

@@ -1,0 +1,25 @@
+.test-mode{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 50px;
+}
+.test-mode__buttons{
+	width: 100px;
+	height: 100px;
+	margin: 10px 0;
+	background-color: cadetblue;
+	cursor: pointer;
+}
+button{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+img{
+	width: 40px;
+	height: 40px;
+}

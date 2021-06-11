@@ -18,6 +18,10 @@
 	top: -100px;
 	opacity: 0;
 }
+nav {
+	background: none;
+	box-shadow: none;
+}
 .settings{
 	position: absolute;
 	top: 100px;

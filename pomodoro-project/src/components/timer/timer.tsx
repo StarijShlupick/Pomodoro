@@ -96,9 +96,11 @@ export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
   }
   return (
     <section className="timer">
-      <h1 className="timer__header">{counterStatus}</h1>
-      <div className="timer__wrapper flex justify-center items-center rounded-full shadow-lg">
-        <div className="timer__screen">
+      <h1 className="timer__header text-black dark:text-gray-200 transition duration-500">
+        {counterStatus}
+      </h1>
+      <div className="timer__wrapper flex justify-center items-center rounded-full shadow-lg bg-gray-100 dark:bg-gray-600">
+        <div className="timer__screen text-black dark:text-white">
           <span>{time.m >= 10 ? time.m : `0${time.m}`}</span>
           <span>:</span>
           <span>{time.s >= 10 ? time.s : `0${time.s}`}</span>
@@ -107,11 +109,13 @@ export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
       <div className="timer__buttons flex justify-center items-center overflow-hidden rounded-full shadow-lg">
         {timerStatus === ETimerStatus.inactive ? (
           <button
-            className="start-button w-full focus:outline-none"
+            className="start-button w-full focus:outline-none bg-green-500 dark:bg-red-400"
             type="button"
             onClick={start}
           >
-            <img src={playIcon} alt="play" />
+            <div className="img-wrapper flex justify-center items-center w-full h-full transform scale-100 active:scale-95">
+              <img src={playIcon} alt="play" />
+            </div>
           </button>
         ) : (
           ''
@@ -123,14 +127,18 @@ export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
               type="button"
               onClick={stop}
             >
-              <img src={stopIcon} alt="play" />
+              <div className="img-wrapper flex justify-center items-center w-full h-full transform scale-100 active:scale-95">
+                <img src={stopIcon} alt="play" />
+              </div>
             </button>
             <button
               className="reset-button w-2/4 focus:outline-none"
               type="button"
               onClick={reset}
             >
-              <img src={resetIcon} alt="play" />
+              <div className="img-wrapper flex justify-center items-center w-full h-full transform scale-100 active:scale-95">
+                <img src={resetIcon} alt="play" />
+              </div>
             </button>
           </>
         ) : (
@@ -139,18 +147,22 @@ export const Timer: FunctionComponent<TTimerProps> = (props: TTimerProps) => {
         {timerStatus === ETimerStatus.pause ? (
           <>
             <button
-              className="resume-button w-2/4 focus:outline-none"
+              className="resume-button w-2/4 focus:outline-none bg-green-500 dark:bg-purple-400"
               type="button"
               onClick={resume}
             >
-              <img src={playIcon} alt="play" />
+              <div className="img-wrapper flex justify-center items-center w-full h-full transform scale-100 active:scale-95">
+                <img src={playIcon} alt="play" />
+              </div>
             </button>
             <button
               className="reset-button w-2/4 focus:outline-none"
               type="button"
               onClick={reset}
             >
-              <img src={resetIcon} alt="play" />
+              <div className="img-wrapper flex justify-center items-center w-full h-full transform scale-100 active:scale-95">
+                <img src={resetIcon} alt="play" />
+              </div>
             </button>
           </>
         ) : (

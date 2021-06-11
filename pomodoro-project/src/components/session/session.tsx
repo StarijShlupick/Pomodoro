@@ -21,8 +21,10 @@ export const Session: FunctionComponent<TSessionProps> = (
   const [error] = useSound(errorSound)
   return (
     <section className="session">
-      <h3 className="session__header">Session length</h3>
-      <div className="session__wrapper flex justify-center items-center rounded-full shadow-lg">
+      <h3 className="session__header text-black dark:text-gray-200 transition duration-500">
+        Session length
+      </h3>
+      <div className="session__wrapper flex justify-center items-center rounded-full shadow-lg bg-red-400 dark:bg-green-500 focus:bg-red-400 dark:focus:bg-green-500">
         <div className="session__display">
           <span>{sessionTime}</span>
           <span>min</span>
@@ -48,7 +50,9 @@ export const Session: FunctionComponent<TSessionProps> = (
             return null
           }}
         >
-          <img src={incrementIcon} alt="play" />
+          <div className="img-wrapper flex justify-center items-center w-full h-full transform scale-100 active:scale-105">
+            <img src={incrementIcon} alt="play" />
+          </div>
         </button>
         <button
           className="decrease-button w-2/4 focus:outline-none"
@@ -69,7 +73,9 @@ export const Session: FunctionComponent<TSessionProps> = (
             return null
           }}
         >
-          <img src={decrementIcon} alt="play" />
+          <div className="img-wrapper flex justify-center items-center w-full h-full transform scale-100 active:scale-95">
+            <img src={decrementIcon} alt="play" />
+          </div>
         </button>
       </div>
     </section>

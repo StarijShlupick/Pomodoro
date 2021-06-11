@@ -46,6 +46,18 @@ export const disableTestMode = () => {
   }
 }
 
+export const lightThemeMode = () => {
+  return {
+    type: 'LIGHT__THEME-MODE',
+  }
+}
+
+export const darkThemeMode = () => {
+  return {
+    type: 'DARK__THEME-MODE',
+  }
+}
+
 export const inactiveTimerStatus = () => {
   return {
     type: 'INACTIVE__TIMER-STATUS',

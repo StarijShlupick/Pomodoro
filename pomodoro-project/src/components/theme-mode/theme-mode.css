@@ -1,14 +1,14 @@
-.buttons-sound{
+.theme-mode{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding-bottom: 50px;
+	margin: 0 10px;
 }
-.buttons-sound__buttons{
-	width: 100px;
-	height: 100px;
-	margin: 10px 0;
+.theme-mode__buttons{
+	width: 50px;
+	height: 50px;
+	margin: 0;
 	cursor: pointer;
 }
 button{

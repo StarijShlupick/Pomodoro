@@ -19,6 +19,10 @@ export enum ETestMode {
   enable = 10,
   disable = 1000,
 }
+export enum EThemeMode {
+  light = 'light-theme',
+  dark = 'dark',
+}
 export type TTimerProps = {
   count: number
   relax: number
@@ -40,5 +44,11 @@ export type TButtonsSoundProps = {
 }
 
 export type TTestModeProps = {
+  sound: EButtonsSoundStatus
   testMode: ETestMode
+}
+
+export type TThemeModeProps = {
+  sound: EButtonsSoundStatus
+  themeMode: EThemeMode
 }

@@ -19,8 +19,10 @@ export const Relax: FunctionComponent<TRelaxProps> = (props: TRelaxProps) => {
   const [error] = useSound(errorSound)
   return (
     <section className="relax">
-      <h3 className="relax__header">Relax length</h3>
-      <div className="relax__wrapper flex justify-center items-center rounded-full shadow-lg">
+      <h3 className="relax__header text-black dark:text-gray-200 transition duration-500">
+        Relax length
+      </h3>
+      <div className="relax__wrapper flex justify-center items-center rounded-full shadow-lg bg-green-500 dark:bg-red-400 focus:bg-green-500 dark:focus:bg-red-400">
         <div className="relax__display">
           <span>{relaxTime}</span>
           <span>min</span>
@@ -46,7 +48,9 @@ export const Relax: FunctionComponent<TRelaxProps> = (props: TRelaxProps) => {
             return null
           }}
         >
-          <img src={incrementIcon} alt="play" />
+          <div className="img-wrapper flex justify-center items-center w-full h-full transform scale-100 active:scale-105">
+            <img src={incrementIcon} alt="play" />
+          </div>
         </button>
         <button
           className="decrease-button w-2/4 focus:outline-none"
@@ -64,7 +68,9 @@ export const Relax: FunctionComponent<TRelaxProps> = (props: TRelaxProps) => {
             return null
           }}
         >
-          <img src={decrementIcon} alt="play" />
+          <div className="img-wrapper flex justify-center items-center w-full h-full transform scale-100 active:scale-95">
+            <img src={decrementIcon} alt="play" />
+          </div>
         </button>
       </div>
     </section>

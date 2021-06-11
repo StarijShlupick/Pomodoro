@@ -14,11 +14,13 @@ export const ButtonsSound: FunctionComponent<TButtonsSoundProps> = (sound) => {
   const [soundOn] = useSound(buttonsSound)
   return (
     <section className="buttons-sound">
-      <h3 className="buttons-sound__header">Buttons sound</h3>
-      <div className="buttons-sound__buttons flex justify-center items-center overflow-hidden rounded-full shadow-lg">
+      <h3 className="buttons-sound__header text-black dark:text-gray-200 transition duration-500">
+        Buttons sound
+      </h3>
+      <div className="buttons-sound__buttons flex justify-center items-center overflow-hidden rounded-full shadow-lg transition-colors duration-500 transform scale-100 active:scale-95">
         {buttonsSoundStatus === EButtonsSoundStatus.enable ? (
           <button
-            className="volume-button focus:outline-none"
+            className="volume-button focus:outline-none bg-indigo-500 dark:bg-purple-500 focus:bg-indigo-500 dark:focus:bg-purple-500"
             type="button"
             onClick={() => {
               dispatch(disableButtonsSound())
@@ -28,7 +30,7 @@ export const ButtonsSound: FunctionComponent<TButtonsSoundProps> = (sound) => {
           </button>
         ) : (
           <button
-            className="volume-button focus:outline-none"
+            className="volume-button focus:outline-none bg-indigo-500 dark:bg-purple-500 focus:bg-indigo-500 dark:focus:bg-purple-500"
             type="button"
             onClick={() => {
               dispatch(enableButtonsSound())

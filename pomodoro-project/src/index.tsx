@@ -7,6 +7,14 @@ import './index.css'
 
 import App from './App'
 
+const bodyDoc = window.document.body
+bodyDoc.classList.add(
+  'bg-white',
+  'dark:bg-gray-700',
+  'transition',
+  'duration-500'
+)
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

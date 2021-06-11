@@ -14,6 +14,7 @@ import { RootState } from './store'
 import { ButtonsSound } from './components/buttons-sound/buttons-sound'
 import { TestMode } from './components/test-mode/test-mode'
 import { ETimerStatus } from './models/interface'
+import { ThemeMode } from './components/theme-mode/theme-mode'
 
 const App: React.FC = () => {
   const count = useSelector((state: RootState) => state.counter)
@@ -21,10 +22,11 @@ const App: React.FC = () => {
   const sound = useSelector((state: RootState) => state.buttonsSound)
   const timerStatus = useSelector((state: RootState) => state.timerStatus)
   const testMode = useSelector((state: RootState) => state.testMode)
+  const themeMode = useSelector((state: RootState) => state.themeMode)
   return (
     <Router>
       <header
-        className={`header ${
+        className={`flex items-center bg-red-400 dark:bg-purple-900 transition duration-500 shadow-lg header ${
           timerStatus === ETimerStatus.active ||
           timerStatus === ETimerStatus.pause
             ? 'header--inactive'
@@ -45,6 +47,7 @@ const App: React.FC = () => {
             </li>
           </ul>
         </nav>
+        <ThemeMode sound={sound} themeMode={themeMode} />
       </header>
       <Switch>
         <Route exact path="/">
@@ -60,7 +63,7 @@ const App: React.FC = () => {
         </Route>
         <Route path="/settings">
           <section className="settings">
-            <TestMode testMode={testMode} />
+            <TestMode sound={sound} testMode={testMode} />
             <Session count={count} sound={sound} />
             <Relax relax={relax} sound={sound} />
             <ButtonsSound sound={sound} />

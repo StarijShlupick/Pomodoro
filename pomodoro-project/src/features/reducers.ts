@@ -1,6 +1,7 @@
 import {
   EButtonsSoundStatus,
   ETestMode,
+  EThemeMode,
   ETimerStatus,
   IAction,
 } from '../models/interface'
@@ -47,6 +48,17 @@ export const TestModeReducer = (state = ETestMode.disable, action: IAction) => {
       return ETestMode.enable
     case 'DISABLE__TEST-MODE':
       return ETestMode.disable
+    default:
+      return state
+  }
+}
+
+export const ThemeModeReducer = (state = EThemeMode.light, action: IAction) => {
+  switch (action.type) {
+    case 'LIGHT__THEME-MODE':
+      return EThemeMode.light
+    case 'DARK__THEME-MODE':
+      return EThemeMode.dark
     default:
       return state
   }

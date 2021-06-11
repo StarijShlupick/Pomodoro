@@ -4,6 +4,7 @@ import {
   CounterReducer,
   CounterRelaxReducer,
   TestModeReducer,
+  ThemeModeReducer,
   TimerStatusReducer,
 } from './features/reducers'
 
@@ -34,6 +35,7 @@ const store = configureStore({
     buttonsSound: ButtonsSoundReducer,
     timerStatus: TimerStatusReducer,
     testMode: TestModeReducer,
+    themeMode: ThemeModeReducer,
   },
   preloadedState: loadState(),
 })
@@ -44,6 +46,7 @@ store.subscribe(() =>
     relax: store.getState().relax,
     buttonsSound: store.getState().buttonsSound,
     testMode: store.getState().testMode,
+    themeMode: store.getState().themeMode,
   })
 )
 
